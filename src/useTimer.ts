@@ -29,8 +29,8 @@ export const useTimer = ({
     dispatch({ type: 'pause' });
   }, []);
 
-  const reset = useCallback(() => {
-    dispatch({ type: 'reset', payload: { initialTime } });
+  const reset = useCallback((newInitialTime) => {
+    dispatch({ type: 'reset', payload: { newInitialTime || initialTime } });
   }, [initialTime]);
 
   const start = useCallback(() => {
