@@ -107,6 +107,36 @@ const TimerWithEndTime = () => {
   );
 };
 
+const TimerWithResetToNewTime = () => {
+  const { time, start, pause, reset, status } = useTimer();
+
+  return (
+    <div className="card">
+      <h5 className="card-header">Timer with end time</h5>
+      <div className="card-body">
+        {status === 'RUNNING' ? (
+          <RunningButton />
+        ) : (
+          <button className="btn btn-primary" onClick={start}>
+            Start
+          </button>
+        )}
+        <button className="btn btn-primary" onClick={pause}>
+          Pause
+        </button>
+        <button className="btn btn-primary" onClick={() => reset(10)}>
+          Reset
+        </button>
+      </div>
+      <div className="card-footer">
+        <span>
+          Ellapsed time: <strong>{time}</strong>
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const TimerWithAdvancedTime = () => {
   const { time, start, pause, reset, advanceTime } = useTimer();
 
@@ -158,6 +188,7 @@ const App = () => (
       <DecrementalTimer />
       <TimerWithEndTime />
       <TimerWithAdvancedTime />
+      <TimerWithResetToNewTime />
     </div>
   </React.Fragment>
 );
