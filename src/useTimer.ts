@@ -30,7 +30,11 @@ export const useTimer = ({
   }, []);
 
   const reset = useCallback((newInitialTime?: number) => {
-    dispatch({ type: 'reset', payload: { initialTime: newInitialTime || initialTime } });
+    let time = newInitialTime || initialTime;
+    if (typeof time !== 'number') {
+      time = initialTime;
+    }
+    dispatch({ type: 'reset', payload: { initialTime: time } });
   }, [initialTime]);
 
   const start = useCallback(() => {
